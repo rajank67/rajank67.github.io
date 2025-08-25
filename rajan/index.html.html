@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RAJAN ⟷ KHANAL | Ultimate 4D Spacetime Experience</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+  
+  body { 
+    margin: 0; 
+    overflow: hidden; 
+    background: #000; 
+    font-family: 'Orbitron', monospace;
+  }
+  canvas { display: block; }
+  
+  #ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #00ffff;
+    z-index: 100;
+    background: rgba(0,0,0,0.9);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 30px rgba(0,255,255,0.7);
+    max-width: 300px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background: linear-gradient(45deg, #001122, #003344);
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  
+  button:hover {
+    background: linear-gradient(45deg, #00ffff, #00aacc);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0,255,255,0.9);
+    transform: scale(1.05);
+  }
+  
+  .cosmic-btn { border-color: #ff6600; color: #ff6600; }
+  .cosmic-btn:hover { background: linear-gradient(45deg, #ff6600, #ffaa00); }
+  
+  .quantum-btn { border-color: #9900ff; color: #9900ff; }
+  .quantum-btn:hover { background: linear-gradient(45deg, #9900ff, #cc66ff); }
+  
+  .time-btn { border-color: #00ff00; color: #00ff00; }
+  .time-btn:hover { background: linear-gradient(45deg, #00ff00, #66ff66); }
+  
+  .dimension-btn { border-color: #ff0099; color: #ff0099; }
+  .dimension-btn:hover { background: linear-gradient(45deg, #ff0099, #ff66cc); }
+  
+  #textDisplay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8vw;
+    font-weight: 900;
+    font-family: 'Orbitron', monospace;
+    color: #00ffff;
+    text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff;
+    z-index: 50;
+    transition: all 2s ease-in-out;
+    letter-spacing: 0.2em;
+    pointer-events: none;
+  }
+  
+  .warp-text { animation: warpEffect 3s ease-in-out; }
+  .blackhole-text { animation: blackholeEffect 4s ease-in-out; }
+  .whitehole-text { animation: whiteholeEffect 4s ease-in-out; }
+  .bigbang-text { animation: bigbangEffect 5s ease-in-out; }
+  .supernova-text { animation: supernovaEffect 4s ease-in-out; }
+  .quantum-text { animation: quantumEffect 3s ease-in-out; }
+  .entangle-text { animation: entangleEffect 3s ease-in-out; }
+  .superpos-text { animation: superposEffect 3s ease-in-out; }
+  .collapse-text { animation: collapseEffect 3s ease-in-out; }
+  .timetravel-text { animation: timetravelEffect 4s ease-in-out; }
+  .paradox-text { animation: paradoxEffect 4s ease-in-out; }
+  .chrono-text { animation: chronoEffect 4s ease-in-out; }
+  .rift-text { animation: riftEffect 4s ease-in-out; }
+  .hyperspace-text { animation: hyperspaceEffect 3s ease-in-out; }
+  .multiverse-text { animation: multiverseEffect 4s ease-in-out; }
+  .phase-text { animation: phaseEffect 3s ease-in-out; }
+  
+  @keyframes warpEffect {
+    0% { transform: translate(-50%, -50%) scale(1) rotateY(0deg); }
+    25% { transform: translate(-50%, -50%) scale(1.5) rotateY(90deg) skewX(20deg); }
+    50% { transform: translate(-50%, -50%) scale(0.1) rotateY(180deg); opacity: 0.1; }
+    75% { transform: translate(-50%, -50%) scale(1.5) rotateY(270deg) skewX(-20deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateY(360deg); }
+  }
+  
+  @keyframes blackholeEffect {
+    0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+    25% { transform: translate(-50%, -50%) scale(0.3) rotate(180deg); filter: blur(5px); }
+    50% { transform: translate(-50%, -50%) scale(0.01) rotate(720deg); opacity: 0; filter: blur(20px); }
+    75% { transform: translate(-50%, -50%) scale(0.01) rotate(1080deg); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(1440deg); opacity: 1; filter: blur(0); }
+  }
+  
+  @keyframes whiteholeEffect {
+    0% { transform: translate(-50%, -50%) scale(0.01); opacity: 0; filter: brightness(10); }
+    25% { transform: translate(-50%, -50%) scale(2) rotateX(90deg); opacity: 0.5; filter: brightness(8); }
+    50% { transform: translate(-50%, -50%) scale(4) rotateX(180deg); opacity: 1; filter: brightness(5); }
+    75% { transform: translate(-50%, -50%) scale(2) rotateX(270deg); filter: brightness(3); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateX(360deg); filter: brightness(1); }
+  }
+  
+  @keyframes bigbangEffect {
+    0% { transform: translate(-50%, -50%) scale(0.001); opacity: 0; filter: brightness(0); }
+    10% { transform: translate(-50%, -50%) scale(0.1); opacity: 0.3; filter: brightness(20) hue-rotate(0deg); }
+    25% { transform: translate(-50%, -50%) scale(3); opacity: 1; filter: brightness(15) hue-rotate(90deg); }
+    50% { transform: translate(-50%, -50%) scale(2); filter: brightness(10) hue-rotate(180deg); }
+    75% { transform: translate(-50%, -50%) scale(1.5); filter: brightness(5) hue-rotate(270deg); }
+    100% { transform: translate(-50%, -50%) scale(1); filter: brightness(1) hue-rotate(360deg); }
+  }
+  
+  @keyframes supernovaEffect {
+    0% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); }
+    20% { transform: translate(-50%, -50%) scale(3) rotateZ(45deg); filter: brightness(10) blur(2px); }
+    40% { transform: translate(-50%, -50%) scale(0.5) rotateZ(90deg); filter: brightness(20) blur(5px); }
+    60% { transform: translate(-50%, -50%) scale(4) rotateZ(180deg); filter: brightness(15) blur(3px); }
+    80% { transform: translate(-50%, -50%) scale(2) rotateZ(270deg); filter: brightness(8) blur(1px); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateZ(360deg); filter: brightness(1) blur(0); }
+  }
+  
+  @keyframes quantumEffect {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    10% { transform: translate(-30%, -30%) scale(0.8); opacity: 0.5; }
+    20% { transform: translate(-70%, -70%) scale(1.2); opacity: 0.3; }
+    30% { transform: translate(-60%, -40%) scale(0.6); opacity: 0.8; }
+    40% { transform: translate(-40%, -60%) scale(1.4); opacity: 0.4; }
+    50% { transform: translate(-80%, -20%) scale(0.2); opacity: 0.1; }
+    60% { transform: translate(-20%, -80%) scale(1.6); opacity: 0.7; }
+    70% { transform: translate(-90%, -50%) scale(0.4); opacity: 0.2; }
+    80% { transform: translate(-10%, -10%) scale(1.8); opacity: 0.6; }
+    90% { transform: translate(-50%, -90%) scale(0.9); opacity: 0.9; }
+  }
+  
+  @keyframes entangleEffect {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-30%, -50%) scale(0.8) rotateY(180deg); }
+    50% { transform: translate(-70%, -50%) scale(0.8) rotateY(180deg); }
+    75% { transform: translate(-30%, -50%) scale(0.8) rotateY(360deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateY(360deg); }
+  }
+  
+  @keyframes superposEffect {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    16% { transform: translate(-40%, -40%) scale(0.9); opacity: 0.8; }
+    33% { transform: translate(-60%, -40%) scale(0.9); opacity: 0.8; }
+    50% { transform: translate(-60%, -60%) scale(0.9); opacity: 0.8; }
+    66% { transform: translate(-40%, -60%) scale(0.9); opacity: 0.8; }
+    83% { transform: translate(-40%, -50%) scale(0.95); opacity: 0.9; }
+  }
+  
+  @keyframes collapseEffect {
+    0% { transform: translate(-50%, -50%) scale(2) rotateZ(0deg); opacity: 0.5; filter: blur(10px); }
+    25% { transform: translate(-50%, -50%) scale(1.5) rotateZ(90deg); opacity: 0.7; filter: blur(7px); }
+    50% { transform: translate(-50%, -50%) scale(1) rotateZ(180deg); opacity: 1; filter: blur(3px); }
+    75% { transform: translate(-50%, -50%) scale(0.8) rotateZ(270deg); filter: blur(1px); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateZ(360deg); filter: blur(0); }
+  }
+  
+  @keyframes timetravelEffect {
+    0% { transform: translate(-50%, -50%) scale(1); filter: hue-rotate(0deg) sepia(0); }
+    25% { transform: translate(-50%, -50%) scale(1.2) skewX(10deg); filter: hue-rotate(90deg) sepia(0.3); }
+    50% { transform: translate(-50%, -50%) scale(0.8) skewX(-10deg); filter: hue-rotate(180deg) sepia(0.6); }
+    75% { transform: translate(-50%, -50%) scale(1.1) skewX(5deg); filter: hue-rotate(270deg) sepia(0.3); }
+    100% { transform: translate(-50%, -50%) scale(1); filter: hue-rotate(360deg) sepia(0); }
+  }
+  
+  @keyframes paradoxEffect {
+    0% { transform: translate(-50%, -50%) scale(1) rotateY(0deg); }
+    25% { transform: translate(-50%, -50%) scale(1.3) rotateY(180deg) rotateX(90deg); }
+    50% { transform: translate(-50%, -50%) scale(0.7) rotateY(360deg) rotateX(180deg); }
+    75% { transform: translate(-50%, -50%) scale(1.3) rotateY(540deg) rotateX(270deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateY(720deg) rotateX(360deg); }
+  }
+  
+  @keyframes chronoEffect {
+    0% { transform: translate(-50%, -50%) scale(1); filter: grayscale(0); }
+    25% { transform: translate(-50%, -50%) scale(1.1) rotateZ(45deg); filter: grayscale(0.5) invert(0.2); }
+    50% { transform: translate(-50%, -50%) scale(0.9) rotateZ(90deg); filter: grayscale(1) invert(0.5); }
+    75% { transform: translate(-50%, -50%) scale(1.1) rotateZ(135deg); filter: grayscale(0.5) invert(0.2); }
+    100% { transform: translate(-50%, -50%) scale(1) rotateZ(180deg); filter: grayscale(0) invert(0); }
+  }
+  
+  @keyframes riftEffect {
+    0% { transform: translate(-50%, -50%) scale(1) skewX(0deg); }
+    20% { transform: translate(-50%, -50%) scale(1.5) skewX(30deg) translateX(20px); }
+    40% { transform: translate(-50%, -50%) scale(0.5) skewX(-30deg) translateX(-20px); }
+    60% { transform: translate(-50%, -50%) scale(1.8) skewX(45deg) translateX(30px); }
+    80% { transform: translate(-50%, -50%) scale(0.3) skewX(-45deg) translateX(-30px); }
+    100% { transform: translate(-50%, -50%) scale(1) skewX(0deg) translateX(0px); }
+  }
+  
+  @keyframes hyperspaceEffect {
+    0% { transform: translate(-50%, -50%) scale(1) perspective(1000px) rotateX(0deg); }
+    25% { transform: translate(-50%, -50%) scale(0.1) perspective(1000px) rotateX(90deg); filter: blur(5px); }
+    50% { transform: translate(-50%, -50%) scale(0.01) perspective(1000px) rotateX(180deg); opacity: 0; }
+    75% { transform: translate(-50%, -50%) scale(0.1) perspective(1000px) rotateX(270deg); opacity: 0.5; filter: blur(5px); }
+    100% { transform: translate(-50%, -50%) scale(1) perspective(1000px) rotateX(360deg); opacity: 1; filter: blur(0); }
+  }
+  
+  @keyframes multiverseEffect {
+    0% { transform: translate(-50%, -50%) scale(1); filter: saturate(1); }
+    20% { transform: translate(-30%, -30%) scale(0.8); filter: saturate(2) hue-rotate(72deg); }
+    40% { transform: translate(-70%, -30%) scale(0.8); filter: saturate(2) hue-rotate(144deg); }
+    60% { transform: translate(-70%, -70%) scale(0.8); filter: saturate(2) hue-rotate(216deg); }
+    80% { transform: translate(-30%, -70%) scale(0.8); filter: saturate(2) hue-rotate(288deg); }
+    100% { transform: translate(-50%, -50%) scale(1); filter: saturate(1) hue-rotate(360deg); }
+  }
+  
+  @keyframes phaseEffect {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    25% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; filter: blur(2px); }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.1; filter: blur(5px); }
+    75% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; filter: blur(2px); }
+  }
+  
+  .status {
+    margin-top: 15px;
+    font-size: 12px;
+    text-align: center;
+    min-height: 40px;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .category {
+    font-size: 10px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div id="textDisplay">RAJAN</div>
+
+<div id="ui">
+  <div class="title">🌌 ULTIMATE 4D SPACETIME</div>
+  
+  <div class="category" style="color: #00ffff;">⚡ DIMENSIONAL</div>
+  <div class="button-grid">
+    <button onclick="initiateWormhole()">🌀 WORMHOLE</button>
+    <button onclick="resetToRajan()">⚡ RESET</button>
+  </div>
+  
+  <div class="category" style="color: #ff6600;">🔥 COSMIC PHENOMENA</div>
+  <div class="button-grid">
+    <button class="cosmic-btn" onclick="blackHoleTransition()">⚫ BLACK HOLE</button>
+    <button class="cosmic-btn" onclick="whiteHoleTransition()">⚪ WHITE HOLE</button>
+    <button class="cosmic-btn" onclick="bigBangTransition()">💥 BIG BANG</button>
+    <button class="cosmic-btn" onclick="supernovaTransition()">🌟 SUPERNOVA</button>
+  </div>
+  
+  <div class="category" style="color: #9900ff;">🔮 QUANTUM REALM</div>
+  <div class="button-grid">
+    <button class="quantum-btn" onclick="quantumTunneling()">🚇 TUNNELING</button>
+    <button class="quantum-btn" onclick="quantumEntanglement()">🔗 ENTANGLE</button>
+    <button class="quantum-btn" onclick="quantumSuperposition()">👥 SUPERPOS</button>
+    <button class="quantum-btn" onclick="quantumCollapse()">📉 COLLAPSE</button>
+  </div>
+  
+  <div class="category" style="color: #00ff00;">⏰ TIME TRAVEL</div>
+  <div class="button-grid">
+    <button class="time-btn" onclick="timeWarp()">⏰ TIME WARP</button>
+    <button class="time-btn" onclick="paradoxLoop()">🔄 PARADOX</button>
+    <button class="time-btn" onclick="chronoShift()">⏪ CHRONO</button>
+    <button class="time-btn" onclick="temporalRift()">⚡ RIFT</button>
+  </div>
+  
+  <div class="category" style="color: #ff0099;">🌈 DIMENSIONS</div>
+  <div class="button-grid">
+    <button class="dimension-btn" onclick="toggleWarpField()">🔮 WARP FIELD</button>
+    <button class="dimension-btn" onclick="hyperspaceJump()">🚀 HYPERSPACE</button>
+    <button class="dimension-btn" onclick="multiverseShift()">🌐 MULTIVERSE</button>
+    <button class="dimension-btn" onclick="dimensionalPhase()">🔄 PHASE</button>
+  </div>
+  
+  <div class="status" id="status">READY: DIMENSIONAL GATEWAY ACTIVE</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// === ULTIMATE 4D SPACETIME ENGINE ===
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 5000);
+camera.position.z = 50;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+
+// === UNIQUE COSMIC OBJECTS ===
+let cosmicObjects = {};
+let activeEffect = 'normal';
+let isTransitioning = false;
+let currentText = 'RAJAN';
+let time = 0;
+
+// Create Unique Wormhole
+function createWormhole() {
+  const geometry = new THREE.CylinderGeometry(2, 20, 150, 64, 100, true);
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    vertexShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+        float wave = sin(pos.y * 0.1 + time * 2.0) * 2.0;
+        pos.x += wave;
+        pos.z += wave;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        vec3 color = vec3(0.0, 0.4 + sin(time) * 0.2, 0.8 + cos(time) * 0.2);
+        float alpha = sin(vUv.y * 10.0 + time * 3.0) * 0.3 + 0.2;
+        gl_FragColor = vec4(color, alpha);
+      }
+    `,
+    transparent: true,
+    side: THREE.DoubleSide
+  });
+  
+  const wormhole = new THREE.Mesh(geometry, material);
+  wormhole.rotation.x = Math.PI / 2;
+  return wormhole;
+}
+
+// Create Black Hole with Accretion Disk
+function createBlackHole() {
+  const group = new THREE.Group();
+  
+  // Event Horizon (invisible core)
+  const coreGeometry = new THREE.SphereGeometry(5, 32, 32);
+  const coreMaterial = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+    transparent: true,
+    opacity: 1
+  });
+  const core = new THREE.Mesh(coreGeometry, coreMaterial);
+  group.add(core);
+  
+  // Accretion Disk
+  const diskGeometry = new THREE.RingGeometry(8, 40, 64, 8);
+  const diskMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    vertexShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+        float radius = length(pos.xy);
+        pos.z += sin(radius * 0.5 + time * 5.0) * 2.0;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        float radius = length(vUv - 0.5) * 2.0;
+        vec3 color = mix(vec3(1.0, 0.3, 0.0), vec3(0.8, 0.0, 0.0), radius);
+        float alpha = (1.0 - radius) * (0.8 + sin(time * 3.0 + radius * 10.0) * 0.3);
+        gl_FragColor = vec4(color, alpha);
+      }
+    `,
+    transparent: true,
+    side: THREE.DoubleSide
+  });
+  const disk = new THREE.Mesh(diskGeometry, diskMaterial);
+  disk.rotation.x = -Math.PI / 2;
+  group.add(disk);
+  
+  // Gravitational Lensing Effect
+  const lensGeometry = new THREE.SphereGeometry(15, 32, 32);
+  const lensMaterial = new THREE.MeshBasicMaterial({
+    color: 0x220066,
+    transparent: true,
+    opacity: 0.1,
+    wireframe: true
+  });
+  const lens = new THREE.Mesh(lensGeometry, lensMaterial);
+  group.add(lens);
+  
+  group.visible = false;
+  return group;
+}
+
+// Create White Hole with Matter Ejection
+function createWhiteHole() {
+  const group = new THREE.Group();
+  
+  // Core
+  const coreGeometry = new THREE.SphereGeometry(8, 32, 32);
+  const coreMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    vertexShader: `
+      uniform float time;
+      void main() {
+        vec3 pos = position;
+        float expand = 1.0 + sin(time * 2.0) * 0.3;
+        pos *= expand;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      void main() {
+        vec3 color = vec3(1.0, 1.0, 0.8 + sin(time * 4.0) * 0.2);
+        gl_FragColor = vec4(color, 0.9);
+      }
+    `,
+    transparent: true
+  });
+  const core = new THREE.Mesh(coreGeometry, coreMaterial);
+  group.add(core);
+  
+  // Matter Jets
+  for(let i = 0; i < 8; i++) {
+    const jetGeometry = new THREE.ConeGeometry(1, 30, 8);
+    const jetMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(i / 8, 1, 0.7),
+      transparent: true,
+      opacity: 0.6
+    });
+    const jet = new THREE.Mesh(jetGeometry, jetMaterial);
+    jet.position.set(
+      Math.cos(i / 8 * Math.PI * 2) * 15,
+      Math.sin(i / 8 * Math.PI * 2) * 15,
+      0
+    );
+    jet.lookAt(
+      Math.cos(i / 8 * Math.PI * 2) * 50,
+      Math.sin(i / 8 * Math.PI * 2) * 50,
+      0
+    );
+    group.add(jet);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Big Bang Expansion
+function createBigBang() {
+  const group = new THREE.Group();
+  
+  // Central Singularity
+  const singularityGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+  const singularityMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true
+  });
+  const singularity = new THREE.Mesh(singularityGeometry, singularityMaterial);
+  group.add(singularity);
+  
+  // Expanding Shells
+  for(let i = 0; i < 20; i++) {
+    const shellGeometry = new THREE.SphereGeometry(5 + i * 5, 16, 16);
+    const shellMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(i / 20, 1, 0.5),
+      transparent: true,
+      opacity: 0.1,
+      wireframe: true
+    });
+    const shell = new THREE.Mesh(shellGeometry, shellMaterial);
+    group.add(shell);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Supernova Explosion
+function createSupernova() {
+  const group = new THREE.Group();
+  
+  // Stellar Core
+  const coreGeometry = new THREE.SphereGeometry(6, 32, 32);
+  const coreMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    fragmentShader: `
+      uniform float time;
+      void main() {
+        vec3 color = vec3(1.0, 0.8, 0.2) * (2.0 + sin(time * 10.0));
+        gl_FragColor = vec4(color, 0.8);
+      }
+    `,
+    transparent: true
+  });
+  const core = new THREE.Mesh(coreGeometry, coreMaterial);
+  group.add(core);
+  
+  // Shock Waves
+  for(let i = 0; i < 15; i++) {
+    const waveGeometry = new THREE.SphereGeometry(10 + i * 8, 32, 32);
+    const waveMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(0.1 + i * 0.05, 1, 0.6),
+      transparent: true,
+      opacity: 0.15 - i * 0.008,
+      wireframe: true
+    });
+    const wave = new THREE.Mesh(waveGeometry, waveMaterial);
+    group.add(wave);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Quantum Tunneling Effect
+function createQuantumTunnel() {
+  const group = new THREE.Group();
+  
+  // Quantum Barrier
+  const barrierGeometry = new THREE.PlaneGeometry(50, 50);
+  const barrierMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 }
+    },
+    vertexShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        vec3 pos = position;
+        pos.z += sin(pos.x * 0.5 + time * 3.0) * 2.0;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float time;
+      varying vec2 vUv;
+      void main() {
+        float wave = sin(vUv.x * 20.0 + time * 5.0) * 0.5 + 0.5;
+        vec3 color = vec3(0.5, 0.0, 1.0) * wave;
+        gl_FragColor = vec4(color, 0.7);
+      }
+    `,
+    transparent: true,
+    side: THREE.DoubleSide
+  });
+  const barrier = new THREE.Mesh(barrierGeometry, barrierMaterial);
+  group.add(barrier);
+  
+  // Tunneling Particles
+  const particleCount = 1000;
+  const particleGeometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  
+  for(let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+  }
+  
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const particleMaterial = new THREE.PointsMaterial({
+    color: 0x9900ff,
+    size: 2,
+    transparent: true,
+    opacity: 0.8
+  });
+  const particles = new THREE.Points(particleGeometry, particleMaterial);
+  group.add(particles);
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Quantum Entanglement
+function createQuantumEntanglement() {
+  const group = new THREE.Group();
+  
+  // Entangled Particles
+  const particle1Geometry = new THREE.SphereGeometry(3, 16, 16);
+  const particle1Material = new THREE.MeshBasicMaterial({ color: 0xff0066 });
+  const particle1 = new THREE.Mesh(particle1Geometry, particle1Material);
+  particle1.position.set(-30, 0, 0);
+  group.add(particle1);
+  
+  const particle2Geometry = new THREE.SphereGeometry(3, 16, 16);
+  const particle2Material = new THREE.MeshBasicMaterial({ color: 0x0066ff });
+  const particle2 = new THREE.Mesh(particle2Geometry, particle2Material);
+  particle2.position.set(30, 0, 0);
+  group.add(particle2);
+  
+  // Connection Line
+  const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-30, 0, 0),
+    new THREE.Vector3(30, 0, 0)
+  ]);
+  const lineMaterial = new THREE.LineBasicMaterial({
+    color: 0xffff00,
+    transparent: true,
+    opacity: 0.8
+  });
+  const line = new THREE.Line(lineGeometry, lineMaterial);
+  group.add(line);
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Time Ripples
+function createTimeRipples() {
+  const group = new THREE.Group();
+  
+  for(let i = 0; i < 15; i++) {
+    const ringGeometry = new THREE.RingGeometry(5 + i * 5, 6 + i * 5, 64);
+    const ringMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 }
+      },
+      fragmentShader: `
+        uniform float time;
+        void main() {
+          vec3 color = vec3(0.0, 1.0, 0.5) * (1.0 + sin(time * 2.0 + gl_FragCoord.x * 0.01));
+          gl_FragColor = vec4(color, 0.3);
+        }
+      `,
+      transparent: true,
+      side: THREE.DoubleSide
+    });
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = i * 2 - 15;
+    group.add(ring);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Hyperspace Tunnel
+function createHyperspace() {
+  const group = new THREE.Group();
+  
+  // Tunnel Structure
+  for(let i = 0; i < 50; i++) {
+    const ringGeometry = new THREE.TorusGeometry(10 + i * 2, 1, 8, 16);
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(i / 50, 1, 0.6),
+      transparent: true,
+      opacity: 0.7 - i * 0.01
+    });
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    ring.position.z = -i * 8;
+    ring.rotation.x = i * 0.1;
+    ring.rotation.y = i * 0.05;
+    group.add(ring);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Create Multiverse Spheres
+function createMultiverse() {
+  const group = new THREE.Group();
+  
+  for(let i = 0; i < 12; i++) {
+    const sphereGeometry = new THREE.SphereGeometry(8, 16, 16);
+    const sphereMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(i / 12, 0.8, 0.6),
+      transparent: true,
+      opacity: 0.6,
+      wireframe: true
+    });
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    
+    const angle = (i / 12) * Math.PI * 2;
+    sphere.position.set(
+      Math.cos(angle) * 40,
+      Math.sin(angle * 2) * 20,
+      Math.sin(angle) * 40
+    );
+    group.add(sphere);
+  }
+  
+  group.visible = false;
+  return group;
+}
+
+// Initialize all cosmic objects
+cosmicObjects = {
+  wormhole: createWormhole(),
+  blackhole: createBlackHole(),
+  whitehole: createWhiteHole(),
+  bigbang: createBigBang(),
+  supernova: createSupernova(),
+  quantumTunnel: createQuantumTunnel(),
+  entanglement: createQuantumEntanglement(),
+  timeRipples: createTimeRipples(),
+  hyperspace: createHyperspace(),
+  multiverse: createMultiverse()
+};
+
+// Add all objects to scene
+Object.values(cosmicObjects).forEach(obj => scene.add(obj));
+
+// Show only wormhole initially
+cosmicObjects.wormhole.visible = true;
+
+// === TRANSITION FUNCTIONS ===
+function performTransition(effectName, animationClass, statusText, color, duration = 4000) {
+  if(isTransitioning) return;
+  
+  isTransitioning = true;
+  const textEl = document.getElementById('textDisplay');
+  const statusEl = document.getElementById('status');
+  
+  // Hide all objects
+  Object.values(cosmicObjects).forEach(obj => obj.visible = false);
+  
+  // Show specific effect object
+  if(cosmicObjects[effectName]) {
+    cosmicObjects[effectName].visible = true;
+  }
+  
+  statusEl.textContent = statusText;
+  textEl.classList.add(animationClass);
+  activeEffect = effectName;
+  
+  setTimeout(() => {
+    currentText = currentText === 'RAJAN' ? 'KHANAL' : 'RAJAN';
+    textEl.textContent = currentText;
+    textEl.style.color = color;
+    textEl.style.textShadow = `0 0 30px ${color}, 0 0 60px ${color}, 0 0 90px ${color}`;
+  }, duration / 2);
+  
+  setTimeout(() => {
+    textEl.classList.remove(animationClass);
+    statusEl.textContent = `${statusText.split(' ')[0]} COMPLETE: ${currentText}`;
+    isTransitioning = false;
+  }, duration);
+}
+
+// === ALL EFFECT FUNCTIONS ===
+function initiateWormhole() {
+  performTransition('wormhole', 'warp-text', 'INITIATING SPACETIME WARP...', '#00ffff', 3000);
+}
+
+function blackHoleTransition() {
+  performTransition('blackhole', 'blackhole-text', 'BLACK HOLE CONSUMING SPACETIME...', '#330066', 4000);
+}
+
+function whiteHoleTransition() {
+  performTransition('whitehole', 'whitehole-text', 'WHITE HOLE EXPELLING MATTER...', '#ffffff', 4000);
+}
+
+function bigBangTransition() {
+  performTransition('bigbang', 'bigbang-text', 'UNIVERSE EXPANDING FROM SINGULARITY...', '#ff6600', 5000);
+}
+
+function supernovaTransition() {
+  performTransition('supernova', 'supernova-text', 'STELLAR EXPLOSION DETECTED...', '#ffaa00', 4000);
+}
+
+function quantumTunneling() {
+  performTransition('quantumTunnel', 'quantum-text', 'TUNNELING THROUGH QUANTUM BARRIER...', '#9900ff', 3000);
+}
+
+function quantumEntanglement() {
+  performTransition('entanglement', 'entangle-text', 'QUANTUM ENTANGLEMENT INITIATED...', '#cc00ff', 3000);
+}
+
+function quantumSuperposition() {
+  performTransition('wormhole', 'superpos-text', 'ENTERING QUANTUM SUPERPOSITION...', '#ff00cc', 3000);
+}
+
+function quantumCollapse() {
+  performTransition('wormhole', 'collapse-text', 'WAVE FUNCTION COLLAPSE DETECTED...', '#6600ff', 3000);
+}
+
+function timeWarp() {
+  performTransition('timeRipples', 'timetravel-text', 'WARPING SPACETIME CONTINUUM...', '#00ff00', 4000);
+}
+
+function paradoxLoop() {
+  performTransition('timeRipples', 'paradox-text', 'TEMPORAL PARADOX LOOP ACTIVE...', '#66ff00', 4000);
+}
+
+function chronoShift() {
+  performTransition('timeRipples', 'chrono-text', 'CHRONOLOGICAL DISPLACEMENT...', '#00ff66', 4000);
+}
+
+function temporalRift() {
+  performTransition('timeRipples', 'rift-text', 'TEMPORAL RIFT DETECTED...', '#00ffaa', 4000);
+}
+
+function hyperspaceJump() {
+  performTransition('hyperspace', 'hyperspace-text', 'JUMPING TO HYPERSPACE...', '#0099ff', 3000);
+}
+
+function multiverseShift() {
+  performTransition('multiverse', 'multiverse-text', 'SHIFTING BETWEEN UNIVERSES...', '#ff0099', 4000);
+}
+
+function dimensionalPhase() {
+  performTransition('wormhole', 'phase-text', 'PHASING THROUGH DIMENSIONS...', '#ff6699', 3000);
+}
+
+function toggleWarpField() {
+  const statusEl = document.getElementById('status');
+  statusEl.textContent = 'WARP FIELD: TOGGLED';
+}
+
+function resetToRajan() {
+  if(isTransitioning) return;
+  
+  const textEl = document.getElementById('textDisplay');
+  const statusEl = document.getElementById('status');
+  
+  Object.values(cosmicObjects).forEach(obj => obj.visible = false);
+  cosmicObjects.wormhole.visible = true;
+  
+  currentText = 'RAJAN';
+  textEl.textContent = currentText;
+  textEl.style.color = '#00ffff';
+  textEl.style.textShadow = '0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff';
+  statusEl.textContent = 'RESET COMPLETE: DIMENSIONAL GATEWAY ACTIVE';
+  activeEffect = 'wormhole';
+}
+
+// === ANIMATION SYSTEM ===
+function updateUniforms() {
+  time += 0.016;
+  
+  // Update all shader uniforms
+  Object.values(cosmicObjects).forEach(obj => {
+    obj.traverse(child => {
+      if(child.material && child.material.uniforms && child.material.uniforms.time) {
+        child.material.uniforms.time.value = time;
+      }
+    });
+  });
+}
+
+function animateCosmicEffects() {
+  switch(activeEffect) {
+    case 'blackhole':
+      cosmicObjects.blackhole.rotation.y += 0.02;
+      cosmicObjects.blackhole.children[1].rotation.z += 0.05; // Accretion disk
+      break;
+    case 'whitehole':
+      cosmicObjects.whitehole.rotation.x += 0.01;
+      cosmicObjects.whitehole.rotation.y += 0.02;
+      cosmicObjects.whitehole.children.forEach((child, index) => {
+        if(index > 0) { // Jets
+          child.scale.setScalar(1 + Math.sin(time * 3 + index) * 0.3);
+        }
+      });
+      break;
+    case 'bigbang':
+      cosmicObjects.bigbang.children.forEach((shell, index) => {
+        if(index > 0) {
+          const scale = 1 + Math.sin(time * 0.5) * 0.5;
+          shell.scale.setScalar(scale + index * 0.1);
+        }
+      });
+      break;
+    case 'supernova':
+      cosmicObjects.supernova.rotation.y += 0.03;
+      cosmicObjects.supernova.children.forEach((child, index) => {
+        if(index > 0) {
+          child.scale.setScalar(1 + Math.sin(time * 2 + index) * 0.2);
+        }
+      });
+      break;
+    case 'quantumTunnel':
+      const particles = cosmicObjects.quantumTunnel.children[1];
+      const positions = particles.geometry.attributes.position.array;
+      for(let i = 0; i < positions.length; i += 3) {
+        positions[i + 2] += Math.sin(time + i) * 0.5;
+      }
+      particles.geometry.attributes.position.needsUpdate = true;
+      break;
+    case 'entanglement':
+      cosmicObjects.entanglement.children[0].rotation.y += 0.02;
+      cosmicObjects.entanglement.children[1].rotation.y -= 0.02;
+      break;
+    case 'timeRipples':
+      cosmicObjects.timeRipples.children.forEach((ring, index) => {
+        ring.rotation.z += 0.01 * (index + 1);
+        ring.scale.setScalar(1 + Math.sin(time + index) * 0.1);
+      });
+      break;
+    case 'hyperspace':
+      cosmicObjects.hyperspace.children.forEach((ring, index) => {
+        ring.position.z += 2;
+        if(ring.position.z > 50) {
+          ring.position.z = -400;
+        }
+      });
+      break;
+    case 'multiverse':
+      cosmicObjects.multiverse.children.forEach((sphere, index) => {
+        const angle = time * 0.5 + (index / 12) * Math.PI * 2;
+        sphere.position.set(
+          Math.cos(angle) * 40,
+          Math.sin(angle * 2) * 20,
+          Math.sin(angle) * 40
+        );
+        sphere.rotation.y += 0.01;
+      });
+      break;
+    default:
+      cosmicObjects.wormhole.rotation.z += 0.005;
+      break;
+  }
+}
+
+function animateCamera() {
+  const radius = 80;
+  const speed = 0.3;
+  
+  camera.position.x = Math.cos(time * speed) * radius;
+  camera.position.z = Math.sin(time * speed) * radius + 50;
+  camera.position.y = Math.sin(time * 0.2) * 30;
+  camera.lookAt(0, 0, 0);
+}
+
+// === MAIN ANIMATION LOOP ===
+function animate() {
+  requestAnimationFrame(animate);
+  updateUniforms();
+  animateCosmicEffects();
+  animateCamera();
+  renderer.render(scene, camera);
+}
+
+// === WINDOW RESIZE ===
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// === MAKE ALL FUNCTIONS GLOBAL ===
+window.initiateWormhole = initiateWormhole;
+window.resetToRajan = resetToRajan;
+window.toggleWarpField = toggleWarpField;
+window.blackHoleTransition = blackHoleTransition;
+window.whiteHoleTransition = whiteHoleTransition;
+window.bigBangTransition = bigBangTransition;
+window.supernovaTransition = supernovaTransition;
+window.quantumTunneling = quantumTunneling;
+window.quantumEntanglement = quantumEntanglement;
+window.quantumSuperposition = quantumSuperposition;
+window.quantumCollapse = quantumCollapse;
+window.timeWarp = timeWarp;
+window.paradoxLoop = paradoxLoop;
+window.chronoShift = chronoShift;
+window.temporalRift = temporalRift;
+window.hyperspaceJump = hyperspaceJump;
+window.multiverseShift = multiverseShift;
+window.dimensionalPhase = dimensionalPhase;
+
+// Initialize the ultimate spacetime experience
+animate();
+</script>
+
+</body>
+</html>
